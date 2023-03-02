@@ -1,0 +1,23 @@
+create database cloud_kitchen;
+use cloud_kitchen;
+
+create table user_details(
+mobile_number bigint primary key,
+name varchar(30),
+Address json,
+email_id varchar(50),
+status tinyint(1) unsigned not null default '0' 
+); 
+
+create table catogory(
+catogory_name varchar(20) primary key,
+image blob
+);
+
+create table menu_item(
+item_name varchar(30) primary key,
+price int,
+description varchar(255),
+catogory_name varchar(20), 
+foreign key(catogory_name) references catogory(catogory_name) 
+);
