@@ -1,0 +1,96 @@
+create database project_db;
+
+use project_db;
+
+create table customer_info(
+customer_id int,
+customer_name varchar(40),
+customer_email varchar(50),
+customer_mobno char(10),
+customer_user_name varchar(20),
+cutomer_password varchar(16),
+customer_address mediumtext,
+customer_pincode char(6),
+customer_city varchar(20)
+);
+
+alter table customer_info add primary key(customer_id); 
+
+drop table product_info;
+create table product_info(
+product_id int,
+product_name varchar(30),
+product_description mediumtext,
+product_quantity int,
+product_price double,
+product_discount float,
+category_id int
+);  
+alter table product_info add primary key(product_id);
+alter table product_info add foreign key(category_id) references category_table(category_id);
+
+
+create table product_image(
+product_image_id int,
+product_id int,
+product_image_image blob
+);
+alter table product_image add primary key(product_image_id);
+alter table product_image add foreign key(product_id) references product_info(product_id);
+
+
+create table order_table(
+order_id int,
+orderdate timestamp,
+order_description mediumtext,
+order_total_cost double,
+customer_id int,
+product_id int,
+order_quantity int,
+order_status boolean,
+order_paymentby enum('upi','cash','card','online_banking'),
+order_shipping_address mediumtext,
+order_city varchar(20)
+);
+alter table order_table add primary key(order_id);
+alter table order_table add foreign key(customer_id) references customer_info(customer_id);
+alter table order_table add foreign key(product_id) references product_info(product_id);
+
+
+create table delivery_personnel_info(
+personnel_id int,
+delivery_person_name varchar(30),
+delivery_person_email varchar(30),
+delivery_mobileno char(10),
+delivery_username varchar(20),
+delivery_address mediumtext,
+delivery_city varchar(20),
+delivery_image blob,
+delivery_aadharcard char(12)
+);
+alter table delivery_personnel_info add primary key(personnel_id);
+
+
+create table category_table(
+category_id int,
+category_name varchar(20),
+category_image blob
+);
+alter table category_table add primary key(category_id);
+
+create table cart_table(
+cart_id int,
+customer_id int,
+cart_status boolean
+);
+alter table cart_table add primary key(cart_id);
+alter table cart_table add foreign key(customer_id) references customer_info(customer_id);
+
+create table cart_item_table(
+cart_item_id int,
+cart_id int,
+product_id int
+);
+alter table cart_item_table add primary key(cart_item_id);
+alter table cart_item_table add foreign key(cart_id) references cart_table(cart_id);
+alter table cart_item_table add foreign key(product_id) references product_info(product_id);
