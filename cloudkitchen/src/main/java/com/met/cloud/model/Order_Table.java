@@ -1,11 +1,11 @@
 package com.met.cloud.model;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class Order_Table {
 
 	private int order_id;
-	private Timestamp orderdate;
+	private Date orderdate;
 	private String order_description;
 	private double order_total_cost;
 	private int customer_id;
@@ -22,10 +22,10 @@ public class Order_Table {
 	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
 	}
-	public Timestamp getOrderdate() {
+	public Date getOrderdate() {
 		return orderdate;
 	}
-	public void setOrderdate(Timestamp orderdate) {
+	public void setOrderdate(Date orderdate) {
 		this.orderdate = orderdate;
 	}
 	public String getOrder_description() {

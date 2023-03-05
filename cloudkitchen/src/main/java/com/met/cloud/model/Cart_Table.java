@@ -1,31 +1,52 @@
 package com.met.cloud.model;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import lombok.Data;
+
+@Data
+@Entity
 public class Cart_Table {
 	
-	private int cart_id;
-	private int customer_id;
-	private boolean cart_status;
-	public int getCart_id() {
-		return cart_id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int cat_Id;
+	private String name;
+	private String imageAddress;
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	//@JoinColumn(name = cat_Id)
+	private Cart_Item_Table cart_Item_Table;
+	
+	public int getCat_Id() {
+		return cat_Id;
 	}
-	public void setCart_id(int cart_id) {
-		this.cart_id = cart_id;
+	public void setCat_Id(int cat_Id) {
+		this.cat_Id = cat_Id;
 	}
-	public int getCustomer_id() {
-		return customer_id;
+	public String getName() {
+		return name;
 	}
-	public void setCustomer_id(int customer_id) {
-		this.customer_id = customer_id;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public boolean isCart_status() {
-		return cart_status;
+	public String getImageAddress() {
+		return imageAddress;
 	}
-	public void setCart_status(boolean cart_status) {
-		this.cart_status = cart_status;
+	public void setImageAddress(String imageAddress) {
+		this.imageAddress = imageAddress;
 	}
 	
 	@Override
 	public String toString() {
-		return "Cart_Table [cart_id=" + cart_id + ", customer_id=" + customer_id + ", cart_status=" + cart_status + "]";
+		return "Cart_Table [cart_Id=" + cat_Id + ", name=" + name + ", imageAddress=" + imageAddress + "]";
 	}
+	
+	
 }

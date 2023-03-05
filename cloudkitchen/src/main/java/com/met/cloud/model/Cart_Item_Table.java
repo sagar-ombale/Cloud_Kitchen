@@ -1,33 +1,83 @@
 package com.met.cloud.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import lombok.Data;
+
+@Data
+@Entity
 public class Cart_Item_Table {
 
-	private int cart_item_id;
-	private int cart_id;
-	private int product_id;
+	@jakarta.persistence.Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int cart_Item_Id;
+	private int cart_Id;
+	private String name;
+	private int price;
+	private String description;
+	private String imageAddress;
 	
-	public int getCart_item_id() {
-		return cart_item_id;
+	
+	
+	public Cart_Item_Table() {
+		
 	}
-	public void setCart_item_id(int cart_item_id) {
-		this.cart_item_id = cart_item_id;
+	
+	public Cart_Item_Table(int cart_Id, String name, int price, String description, String imageAddress) {
+		super();
+		this.cart_Id = cart_Id;
+		this.name = name;
+		this.price = price;
+		this.description = description;
+		this.imageAddress = imageAddress;
 	}
-	public int getCart_id() {
-		return cart_id;
+	public int getCart_Item_Id() {
+		return cart_Item_Id;
 	}
-	public void setCart_id(int cart_id) {
-		this.cart_id = cart_id;
+	public void setCart_Item_Id(int cart_Item_Id) {
+		this.cart_Item_Id = cart_Item_Id;
 	}
-	public int getProduct_id() {
-		return product_id;
+	public int getCart_Id() {
+		return cart_Id;
 	}
-	public void setProduct_id(int product_id) {
-		this.product_id = product_id;
+	public void setCart_Id(int cart_Id) {
+		this.cart_Id = cart_Id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public String getImageAddress() {
+		return imageAddress;
+	}
+	public void setImageAddress(String imageAddress) {
+		this.imageAddress = imageAddress;
 	}
 
 	@Override
 	public String toString() {
-		return "Cart_Item_Table [cart_item_id=" + cart_item_id + ", cart_id=" + cart_id + ", product_id=" + product_id
-				+ "]";
+		return "Cart_Item_Table [cart_Item_Id=" + cart_Item_Id + ", cart_Id=" + cart_Id + ", name=" + name + ", price="
+				+ price + ", description=" + description + ", imageAddress=" + imageAddress + "]";
 	}
+	 
+	
+
+	
 }
+
